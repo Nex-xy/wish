@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>I Love You 💌</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,500;1,600;1,700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pink:#ff6b9d;
+  --pink-deep:#ff4d88;
+  --violet:#a855f7;
+  --txt:#f7e9f0;
+  --txt-dim:rgba(247,233,240,.58);
+  --glass-brd:rgba(255,255,255,.12);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Plus Jakarta Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  background:#0d0410;
+  color:var(--txt);
+  display:grid;
+  place-items:center;
+  min-height:100dvh;
+  overflow:hidden;
+  padding:22px;
+  position:relative;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ---------- Aurora background ---------- */
+body::before{
+  content:'';
+  position:fixed;
+  inset:-30%;
+  z-index:0;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(255,107,157,.30), transparent 42%),
+    radial-gradient(circle at 82% 18%, rgba(168,85,247,.26), transparent 45%),
+    radial-gradient(circle at 55% 92%, rgba(255,143,177,.20), transparent 48%),
+    radial-gradient(circle at 8% 78%, rgba(120,60,200,.22), transparent 45%);
+  filter:blur(34px);
+  animation:drift 22s ease-in-out infinite alternate;
+}
+@keyframes drift{
+  0%  {transform:scale(1) translate(0,0)}
+  50% {transform:scale(1.12) translate(2%,-2%)}
+  100%{transform:scale(1.05) translate(-2%,2%)}
+}
+
+/* ---------- Floating hearts ---------- */
+.hearts-bg{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.fh{
+  position:absolute;
+  bottom:-70px;
+  animation:floatUp linear infinite;
+  will-change:transform;
+}
+.fh i{
+  display:block;
+  width:var(--size);height:var(--size);
+  background:var(--c);
+  transform:rotate(45deg);
+  border-radius:0 0 3px 0;
+  position:relative;
+  opacity:var(--o);
+  filter:blur(.4px);
+}
+.fh i::before,.fh i::after{
+  content:'';position:absolute;
+  width:100%;height:100%;border-radius:50%;
+  background:var(--c);
+}
+.fh i::before{top:-50%;left:0}
+.fh i::after {top:0;left:-50%}
+@keyframes floatUp{
+  0%  {transform:translateY(0) translateX(0) rotate(0deg);      opacity:0}
+  8%  {opacity:1}
+  92% {opacity:1}
+  100%{transform:translateY(-118vh) translateX(var(--dx)) rotate(var(--r)); opacity:0}
+}
+
+/* ---------- Card ---------- */
+.card{
+  position:relative;
+  z-index:2;
+  width:min(520px,100%);
+  padding:44px 36px 34px;
+  border-radius:32px;
+  background:linear-gradient(160deg, rgba(255,255,255,.09), rgba(255,255,255,.028));
+  border:1px solid var(--glass-brd);
+  backdrop-filter:blur(26px) saturate(150%);
+  -webkit-backdrop-filter:blur(26px) saturate(150%);
+  box-shadow:
+    0 34px 80px -24px rgba(0,0,0,.72),
+    0 1px 0 rgba(255,255,255,.18) inset,
+    0 0 0 1px rgba(255,255,255,.03) inset;
+  text-align:center;
+  animation:cardIn .95s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(28px) scale(.97)}
+  to  {opacity:1;transform:none}
+}
+
+/* ---------- Beating heart ---------- */
+.heart-wrap{
+  position:relative;
+  width:96px;height:96px;
+  margin:0 auto 20px;
+  display:grid;place-items:center;
+}
+.heart-wrap::before,.heart-wrap::after{
+  content:'';position:absolute;inset:0;border-radius:50%;
+  border:1px solid rgba(255,107,157,.38);
+  animation:ring 3.2s ease-out infinite;
+}
+.heart-wrap::after{animation-delay:1.6s}
+@keyframes ring{
+  0%  {transform:scale(.5);opacity:.9}
+  100%{transform:scale(1.95);opacity:0}
+}
+.heart-svg{
+  width:56px;height:56px;
+  filter:drop-shadow(0 0 20px rgba(255,107,157,.9));
+  animation:beat 1.45s ease-in-out infinite;
+}
+@keyframes beat{
+  0%,100%{transform:scale(1)}
+  14%{transform:scale(1.17)}
+  28%{transform:scale(1)}
+  42%{transform:scale(1.10)}
+  70%{transform:scale(1)}
+}
+
+/* ---------- Heading ---------- */
+h1{
+  font-family:'Playfair Display',Georgia,serif;
+  font-style:italic;
+  font-weight:600;
+  font-size:clamp(2.4rem,8.5vw,3.4rem);
+  line-height:1.05;
+  letter-spacing:-.015em;
+  background:linear-gradient(100deg,#fff 0%,#ffd6e6 22%,#ff6b9d 48%,#c084fc 74%,#fff 100%);
+  background-size:250% 100%;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  animation:shimmer 7s linear infinite;
+}
+@keyframes shimmer{to{background-position:-250% 0}}
+
+.sub{
+  margin:14px auto 0;
+  max-width:340px;
+  font-size:.9rem;
+  line-height:1.6;
+  color:var(--txt-dim);
+  font-weight:400;
+}
+
+/* ---------- Form ---------- */
+form{margin-top:26px}
+.field{position:relative;text-align:left}
+textarea{
+  width:100%;
+  min-height:104px;
+  max-height:190px;
+  resize:none;
+  padding:16px 18px 34px;
+  border-radius:18px;
+  background:rgba(0,0,0,.30);
+  border:1px solid rgba(255,255,255,.10);
+  color:var(--txt);
+  font:inherit;
+  font-size:.95rem;
+  line-height:1.55;
+  outline:none;
+  transition:border-color .3s, box-shadow .3s, background .3s;
+}
+textarea::placeholder{color:rgba(247,233,240,.30)}
+textarea:focus{
+  border-color:rgba(255,107,157,.65);
+  background:rgba(0,0,0,.36);
+  box-shadow:0 0 0 4px rgba(255,107,157,.12), 0 0 30px -6px rgba(255,107,157,.55);
+}
+.counter{
+  position:absolute;
+  right:16px;bottom:12px;
+  font-size:.72rem;
+  color:rgba(247,233,240,.32);
+  letter-spacing:.04em;
+  pointer-events:none;
+  transition:color .3s;
+}
+.counter.warn{color:rgba(255,120,150,.85)}
+
+/* ---------- Button ---------- */
+.btn{
+  position:relative;
+  width:100%;
+  margin-top:16px;
+  padding:16px 24px;
+  border:0;
+  border-radius:16px;
+  cursor:pointer;
+  font:inherit;
+  font-weight:600;
+  font-size:1rem;
+  color:#fff;
+  letter-spacing:.01em;
+  background:linear-gradient(100deg,#ff4d88,#ff6b9d 42%,#a855f7 100%);
+  background-size:190% 100%;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  overflow:hidden;
+  box-shadow:
+    0 16px 38px -14px rgba(255,77,136,.9),
+    0 0 0 1px rgba(255,255,255,.15) inset;
+  transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .25s, background-position .55s;
+}
+.btn::after{
+  content:'';
+  position:absolute;top:0;left:-120%;
+  width:60%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.45),transparent);
+  transform:skewX(-20deg);
+  transition:left .7s cubic-bezier(.16,1,.3,1);
+}
+.btn:hover:not(:disabled){transform:translateY(-2px);background-position:100% 0;
+  box-shadow:0 22px 46px -14px rgba(255,77,136,1), 0 0 0 1px rgba(255,255,255,.22) inset}
+.btn:hover:not(:disabled)::after{left:130%}
+.btn:active:not(:disabled){transform:translateY(0) scale(.985)}
+.btn:disabled{cursor:not-allowed;opacity:.9}
+.btn.done{background:linear-gradient(100deg,#22c55e,#34d399 60%,#10b981)}
+.btn svg{flex:none}
+
+.spinner{
+  width:17px;height:17px;border-radius:50%;
+  border:2px solid rgba(255,255,255,.35);
+  border-top-color:#fff;
+  animation:spin .7s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- Toast ---------- */
+.toast{
+  position:fixed;
+  left:50%;bottom:32px;
+  transform:translate(-50%,150%);
+  z-index:50;
+  display:flex;align-items:center;gap:9px;
+  padding:13px 22px;
+  border-radius:999px;
+  background:rgba(18,6,15,.88);
+  border:1px solid rgba(255,255,255,.14);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+  font-size:.88rem;font-weight:500;
+  box-shadow:0 20px 44px -16px rgba(0,0,0,.85);
+  opacity:0;
+  pointer-events:none;
+  max-width:min(430px,90vw);
+  transition:transform .55s cubic-bezier(.16,1,.3,1), opacity .35s;
+}
+.toast.show{transform:translate(-50%,0);opacity:1}
+.toast.ok {border-color:rgba(255,107,157,.5); box-shadow:0 20px 44px -16px rgba(255,77,136,.6)}
+.toast.err{border-color:rgba(255,99,99,.55)}
+
+/* ---------- Heart burst ---------- */
+.burst{
+  position:fixed;
+  z-index:60;
+  pointer-events:none;
+  animation:burstOut 1.15s cubic-bezier(.16,1,.3,1) forwards;
+}
+@keyframes burstOut{
+  0%  {transform:translate(-50%,-50%) scale(.3) rotate(0deg); opacity:1}
+  100%{transform:translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(var(--sc)) rotate(var(--rot)); opacity:0}
+}
+
+@media (max-width:480px){
+  .card{padding:36px 24px 28px;border-radius:26px}
+  h1{font-size:2.5rem}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="hearts-bg" id="heartsBg" aria-hidden="true"></div>
+
+<main class="card">
+  <div class="heart-wrap" aria-hidden="true">
+    <svg class="heart-svg" viewBox="0 0 24 24">
+      <defs>
+        <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%"   stop-color="#ff9ec7"/>
+          <stop offset="52%"  stop-color="#ff4d88"/>
+          <stop offset="100%" stop-color="#a855f7"/>
+        </linearGradient>
+      </defs>
+      <path fill="url(#hg)" d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+    </svg>
+  </div>
+
+  <h1>I Love You</h1>
+  <p class="sub">Write something from your heart 💌</p>
+
+  <form id="loveForm" novalidate>
+    <div class="field">
+      <textarea id="msg" maxlength="800" placeholder="You make my whole world softer…" aria-label="Your love message"></textarea>
+      <span class="counter" id="counter">0 / 800</span>
+    </div>
+
+    <button type="submit" class="btn" id="sendBtn">
+      <span id="btnContent" style="display:flex;align-items:center;gap:10px">
+        Send Love
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9z"/>
+        </svg>
+      </span>
+    </button>
+  </form>
+</main>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+/* =========================================================
+   1. CONFIG  — fill these two in
+   ========================================================= */
+const CONFIG = {
+  BOT_TOKEN: "8943555320:AAEeiQOLSwDQRsncWVr_ms9GFN9lIuwtZyQ",   // e.g. "123456789:AAH..."
+  CHAT_ID:   "8754952736"    // e.g. "123456789"
+};
+
+/* =========================================================
+   2. Floating hearts
+   ========================================================= */
+(function makeHearts(){
+  const wrap = document.getElementById('heartsBg');
+  const colors = ['#ff6b9d','#ff9ec7','#c084fc','#ffb3c9','#a855f7','#ff4d88'];
+
+  for (let i = 0; i < 26; i++){
+    const h = document.createElement('div');
+    h.className = 'fh';
+
+    const size = 7 + Math.random() * 15;
+    h.style.setProperty('--size', size + 'px');
+    h.style.setProperty('--o', (0.14 + Math.random() * 0.34).toFixed(2));
+    h.style.setProperty('--r', (Math.random() * 400 - 200).toFixed(0) + 'deg');
+    h.style.setProperty('--dx', (Math.random() * 160 - 80).toFixed(0) + 'px');
+    h.style.setProperty('--c', colors[Math.floor(Math.random() * colors.length)]);
+
+    h.style.left = Math.random() * 100 + '%';
+    h.style.animationDuration = (14 + Math.random() * 18).toFixed(1) + 's';
+    h.style.animationDelay = (-Math.random() * 32).toFixed(1) + 's';
+
+    h.innerHTML = '<i></i>';
+    wrap.appendChild(h);
+  }
+})();
+
+/* =========================================================
+   3. Elements & helpers
+   ========================================================= */
+const form      = document.getElementById('loveForm');
+const msgEl     = document.getElementById('msg');
+const counter   = document.getElementById('counter');
+const btn       = document.getElementById('sendBtn');
+const btnContent= document.getElementById('btnContent');
+const toastEl   = document.getElementById('toast');
+
+const ICONS = {
+  plane : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 2 11 13"/><path d="M22 2 15 22 11 13 2 9z"/></svg>',
+  check : '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>',
+  spin  : '<span class="spinner"></span>'
+};
+
+function setBtn(state){
+  if (state === 'idle'){
+    btn.disabled = false;
+    btn.classList.remove('done');
+    btnContent.innerHTML = 'Send Love ' + ICONS.plane;
+  } else if (state === 'sending'){
+    btn.disabled = true;
+    btnContent.innerHTML = ICONS.spin + ' Sending…';
+  } else if (state === 'done'){
+    btn.disabled = true;
+    btn.classList.add('done');
+    btnContent.innerHTML = 'Delivered! ' + ICONS.check;
+  }
+}
+
+let toastTimer;
+function toast(text, type = 'ok'){
+  clearTimeout(toastTimer);
+  toastEl.textContent = text;
+  toastEl.className = 'toast show ' + type;
+  toastTimer = setTimeout(() => toastEl.classList.remove('show'), 3800);
+}
+
+function escapeHTML(s){
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function burstHearts(x, y){
+  const glyphs = ['💖','💕','❤️','💗','✨','💘','💞'];
+  for (let i = 0; i < 16; i++){
+    const el = document.createElement('div');
+    el.className = 'burst';
+    el.textContent = glyphs[Math.floor(Math.random() * glyphs.length)];
+
+    const angle = Math.random() * Math.PI * 2;
+    const dist  = 60 + Math.random() * 150;
+
+    el.style.left = x + 'px';
+    el.style.top  = y + 'px';
+    el.style.fontSize = (12 + Math.random() * 14) + 'px';
+    el.style.setProperty('--dx',  Math.cos(angle) * dist + 'px');
+    el.style.setProperty('--dy',  Math.sin(angle) * dist - 50 + 'px');
+    el.style.setProperty('--sc',  (0.5 + Math.random()).toFixed(2));
+    el.style.setProperty('--rot', (Math.random() * 720 - 360).toFixed(0) + 'deg');
+
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+}
+
+/* =========================================================
+   4. Character counter
+   ========================================================= */
+msgEl.addEventListener('input', () => {
+  const len = msgEl.value.length;
+  counter.textContent = `${len} / 800`;
+  counter.classList.toggle('warn', len > 720);
+});
+
+/* =========================================================
+   5. Telegram send
+   ========================================================= */
+async function sendToTelegram(userText){
+  const url = `https://api.telegram.org/bot${CONFIG.BOT_TOKEN}/sendMessage`;
+
+  const payload = {
+    chat_id: CONFIG.CHAT_ID,
+    parse_mode: 'HTML',
+    text:
+`💌 <b>New love note</b>
+
+${escapeHTML(userText)}
+
+<i>— sent with 💕</i>`
+  };
+
+  const res  = await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  });
+
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || !data.ok){
+    throw new Error(data.description || `Telegram error (${res.status})`);
+  }
+  return data;
+}
+
+/* =========================================================
+   6. Submit
+   ========================================================= */
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const text = msgEl.value.trim();
+
+  if (!CONFIG.BOT_TOKEN || !CONFIG.CHAT_ID){
+    toast('⚠️ Add your BOT_TOKEN and CHAT_ID in the script first.', 'err');
+    return;
+  }
+  if (!text){
+    toast('Write something sweet first 💭', 'err');
+    msgEl.focus();
+    return;
+  }
+
+  setBtn('sending');
+
+  try {
+    await sendToTelegram(text);
+
+    const r = btn.getBoundingClientRect();
+    burstHearts(r.left + r.width / 2, r.top + r.height / 2);
+
+    setBtn('done');
+    toast('💖 Your love note has been delivered!', 'ok');
+
+    msgEl.value = '';
+    counter.textContent = '0 / 800';
+    counter.classList.remove('warn');
+
+    setTimeout(() => setBtn('idle'), 2600);
+  } catch (err) {
+    console.error(err);
+    setBtn('idle');
+    toast('❌ Could not send: ' + err.message, 'err');
+  }
+});
+
+/* Enter sends, Shift+Enter adds a new line */
+msgEl.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && !e.shiftKey){
+    e.preventDefault();
+    form.requestSubmit();
+  }
+});
+
+setBtn('idle');
+</script>
+</body>
+</html>
